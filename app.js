@@ -11,11 +11,12 @@ const connect = async () => {
 const creteCustomer = async () => {
   const name = prompt('Enter Customer name: ')
   const age = prompt('Enter your age: ')
-  const customerInfo = new Customer({ name, age })
-
-  const customer = await Customer.create(customerInfo)
-
-  console.log('New Customer', customerInfo)
+  const customerData = {
+    name: name,
+    age: age
+  }
+  const customer = await Customer.create(customerData)
+  console.log('Customer Created!', customerData)
 }
 
 const viewAllCustomers = async () => {
@@ -29,6 +30,7 @@ const updateCustomer = async () => {
   const id = prompt('What ID you want to update? ')
   const newName = prompt('Enter the new name: ')
   const newAge = prompt('Enter the new age: ')
+
   const customer = await Customer.findByIdAndUpdate(id, {
     name: newName,
     age: newAge
